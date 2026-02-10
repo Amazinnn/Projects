@@ -1,0 +1,29 @@
+# Project: Campus_Navigator
+# Makefile created by Dev-C++ 6.7.5
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o
+LINKOBJ  = main.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -g3 -L"C:/Program Files/MySQL/MySQL Connector C 6.1/lib" -lmysql -lws2_32 -ladvapi32
+INCS     = -I"c:/program files (x86)/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include" -I"c:/program files (x86)/dev-cpp/mingw32/include" -I"c:/program files (x86)/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include-fixed" -I"C:/Program Files/MySQL/MySQL Connector C 6.1/include"
+CXXINCS  = -I"c:/program files (x86)/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include/c++" -I"c:/program files (x86)/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include/c++/mingw32" -I"c:/program files (x86)/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include/c++/backward" -I"c:/program files (x86)/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include" -I"c:/program files (x86)/dev-cpp/mingw32/include" -I"c:/program files (x86)/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include-fixed" -I"C:/Program Files/MySQL/MySQL Connector C 6.1/include"
+BIN      = Campus_Navigator.exe
+CXXFLAGS = $(CXXINCS) -Wall -Wextra -g3
+ENCODINGS = -finput-charset=utf-8 -fexec-charset=gbk
+CFLAGS   = $(INCS) -Wall -Wextra -g3 -lmysql -lws2_32 -ladvapi32
+RM       = del /q /f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "$(BIN)" $(LIBS)
+
+main.o: main.c data_management_2.0.h database.h nearest_search.h route_planning.h
+	$(CC) -c main.c -o main.o $(CFLAGS) 
